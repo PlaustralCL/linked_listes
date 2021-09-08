@@ -27,6 +27,20 @@ class LinkedList
     end
   end
 
+  def prepend(value)
+    new_node = Node.new(value: value)
+
+    if first_node?
+      add_first_node(new_node)
+    elsif head == tail
+      @head = new_node
+      head.next_node = tail
+    else
+      new_node.next_node = head
+      @head = new_node
+    end
+  end
+
   def first_node?
     head.value.nil?
   end
@@ -34,11 +48,6 @@ class LinkedList
   def add_first_node(new_node)
     @head = new_node
     @tail = new_node
-  end
-
-  def prepend(value)
-    new_node = Node.new(value, head)
-    @head = new_node
   end
 
   def traverse
@@ -64,19 +73,22 @@ end
 
 test_list = LinkedList.new
 # binding.pry
-p test_list.append(5)
-puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
-p test_list.append(7)
-puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
-p test_list.append(9)
-puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
-puts ""
-p test_list.append(11)
-puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
-puts ""
-test_list.traverse
-# p test_list.tail
-test_list.to_s
-# test_list.prepend(99)
-# test_list.prepend(98)
+# p test_list.append(5)
+# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# p test_list.append(7)
+# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# p test_list.append(9)
+# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# puts ""
+# p test_list.append(11)
+# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# puts ""
+# test_list.traverse
+# # p test_list.tail
 # test_list.to_s
+test_list.prepend(99)
+puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+test_list.prepend(98)
+puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+test_list.traverse
+test_list.to_s
