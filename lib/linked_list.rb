@@ -16,16 +16,15 @@ class LinkedList
   def append(value)
     new_node = Node.new(value: value)
 
-    return add_first_node(new_node) if first_node?
-
-    if tail == head
+    if first_node?
+      add_first_node(new_node)
+    elsif tail == head
       @tail = new_node
       head.next_node = tail
+    else
+      tail.next_node = new_node
+      @tail = new_node
     end
-
-    tail.next_node = new_node
-    @tail = new_node
-    tail
   end
 
   def first_node?
