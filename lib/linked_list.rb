@@ -15,7 +15,6 @@ class LinkedList
 
   def append(value)
     new_node = Node.new(value: value)
-
     if first_node?
       add_first_node(new_node)
     elsif tail == head
@@ -29,7 +28,6 @@ class LinkedList
 
   def prepend(value)
     new_node = Node.new(value: value)
-
     if first_node?
       add_first_node(new_node)
     elsif head == tail
@@ -39,6 +37,16 @@ class LinkedList
       new_node.next_node = head
       @head = new_node
     end
+  end
+
+  def size
+    current_node = head
+    list_size = 0
+    until current_node == tail
+      list_size += 1
+      current_node = current_node.next_node
+    end
+    list_size + 1
   end
 
   def first_node?
@@ -73,22 +81,24 @@ end
 
 test_list = LinkedList.new
 # binding.pry
-# p test_list.append(5)
+test_list.append(5)
 # puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
-# p test_list.append(7)
+test_list.append(7)
 # puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
-# p test_list.append(9)
+test_list.append(9)
 # puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
 # puts ""
-# p test_list.append(11)
+test_list.append(11)
 # puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
 # puts ""
 # test_list.traverse
-# # p test_list.tail
-# test_list.to_s
-test_list.prepend(99)
-puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
-test_list.prepend(98)
-puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
-test_list.traverse
+# p test_list.tail
 test_list.to_s
+puts "List size: #{test_list.size}"
+test_list.prepend(99)
+# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+test_list.prepend(98)
+# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# test_list.traverse
+test_list.to_s
+puts "List size: #{test_list.size}"
