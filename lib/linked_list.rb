@@ -1,22 +1,40 @@
 # frozen_string_literal: true
 
+require "pry-byebug"
 require_relative "./node"
 
 # Create a linked list
 class LinkedList
   attr_reader :head, :tail
 
-  def initialize(tail = Node.new, head = Node.new(nil, tail))
-    @tail = tail
-    @head = head
+  def initialize
+    new_node = Node.new
+    @head = new_node
+    @tail = new_node
   end
 
   def append(value)
-    return head.value = value if head.value.nil?
+    new_node = Node.new(value: value)
 
-    current_node = head
-    current_node = current_node.next_node until current_node.next_node == tail
-    current_node.next_node = Node.new(value, tail)
+    return add_first_node(new_node) if first_node?
+
+    if tail == head
+      @tail = new_node
+      head.next_node = tail
+    end
+
+    tail.next_node = new_node
+    @tail = new_node
+    tail
+  end
+
+  def first_node?
+    head.value.nil?
+  end
+
+  def add_first_node(new_node)
+    @head = new_node
+    @tail = new_node
   end
 
   def prepend(value)
@@ -27,10 +45,10 @@ class LinkedList
   def traverse
     current_node = head
     until current_node == tail
-      puts current_node.value
-      puts current_node.next_node
+      p current_node
       current_node = current_node.next_node
     end
+    p tail
   end
 
   def to_s
@@ -39,18 +57,27 @@ class LinkedList
       print "#{current_node.value} -> "
       current_node = current_node.next_node
     end
+    print "#{tail.value} -> "
     puts "nil"
   end
 end
 
 
 test_list = LinkedList.new
-test_list.append(5)
-test_list.append(7)
-test_list.append(9)
-# test_list.traverse
+# binding.pry
+p test_list.append(5)
+puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+p test_list.append(7)
+puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+p test_list.append(9)
+puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+puts ""
+p test_list.append(11)
+puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+puts ""
+test_list.traverse
 # p test_list.tail
 test_list.to_s
-test_list.prepend(99)
-test_list.prepend(98)
-test_list.to_s
+# test_list.prepend(99)
+# test_list.prepend(98)
+# test_list.to_s
