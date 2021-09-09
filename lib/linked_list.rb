@@ -5,24 +5,24 @@ require_relative "./node"
 
 # Create a linked list
 class LinkedList
-  attr_reader :head, :tail
+  attr_reader :head_node, :tail_node
 
   def initialize
     new_node = Node.new
-    @head = new_node
-    @tail = new_node
+    @head_node = new_node
+    @tail_node = new_node
   end
 
   def append(value)
     new_node = Node.new(value: value)
     if first_node?
       add_first_node(new_node)
-    elsif tail == head
-      @tail = new_node
-      head.next_node = tail
+    elsif tail_node == head_node
+      @tail_node = new_node
+      head_node.next_node = tail_node
     else
-      tail.next_node = new_node
-      @tail = new_node
+      tail_node.next_node = new_node
+      @tail_node = new_node
     end
   end
 
@@ -30,50 +30,58 @@ class LinkedList
     new_node = Node.new(value: value)
     if first_node?
       add_first_node(new_node)
-    elsif head == tail
-      @head = new_node
-      head.next_node = tail
+    elsif head_node == tail_node
+      @head_node = new_node
+      head_node.next_node = tail_node
     else
-      new_node.next_node = head
-      @head = new_node
+      new_node.next_node = head_node
+      @head_node = new_node
     end
   end
 
   def size
-    current_node = head
+    current_node = head_node
     list_size = 0
-    until current_node == tail
+    until current_node == tail_node
       list_size += 1
       current_node = current_node.next_node
     end
     list_size + 1
   end
 
+  def head
+    head_node.value
+  end
+
+  def tail
+    tail_node.value
+  end
+
   def first_node?
-    head.value.nil?
+    head_node.value.nil?
   end
 
   def add_first_node(new_node)
-    @head = new_node
-    @tail = new_node
+    @head_node = new_node
+    @tail_node = new_node
   end
 
   def traverse
-    current_node = head
-    until current_node == tail
+    current_node = head_node
+    until current_node == tail_node
       p current_node
       current_node = current_node.next_node
     end
-    p tail
+    p tail_node
   end
 
   def to_s
-    current_node = head
-    until current_node == tail
+    current_node = head_node
+    until current_node == tail_node
       print "#{current_node.value} -> "
       current_node = current_node.next_node
     end
-    print "#{tail.value} -> "
+    print "#{tail_node.value} -> "
     puts "nil"
   end
 end
@@ -82,23 +90,25 @@ end
 test_list = LinkedList.new
 # binding.pry
 test_list.append(5)
-# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 test_list.append(7)
-# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 test_list.append(9)
-# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 # puts ""
 test_list.append(11)
-# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 # puts ""
 # test_list.traverse
-# p test_list.tail
+# p test_list.tail_node
 test_list.to_s
 puts "List size: #{test_list.size}"
 test_list.prepend(99)
-# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 test_list.prepend(98)
-# puts "#{test_list.head} --> #{test_list.head.value} #{test_list.tail} --> #{test_list.tail.value}\n\n"
+# puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 # test_list.traverse
 test_list.to_s
 puts "List size: #{test_list.size}"
+puts "Head: #{test_list.head}"
+puts "Tail: #{test_list.tail}"
