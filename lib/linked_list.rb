@@ -41,7 +41,7 @@ class LinkedList
 
   def size
     counter = 0
-    each { counter += 1 }
+    each_node { counter += 1 }
     head.nil? ? 0 : counter + 1
   end
 
@@ -62,7 +62,7 @@ class LinkedList
     @tail_node = new_node
   end
 
-  def each
+  def each_node
     current_node = head_node
     until current_node == tail_node
       yield current_node
@@ -81,7 +81,7 @@ class LinkedList
 
   def to_s
     string_list = ""
-    each { |element| string_list += "#{element.value} -> " }
+    each_node { |element| string_list += "#{element.value} -> " }
     string_list + "#{tail_node.value} -> nil"
   end
 end
