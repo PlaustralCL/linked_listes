@@ -40,13 +40,9 @@ class LinkedList
   end
 
   def size
-    current_node = head_node
-    list_size = 0
-    until current_node == tail_node
-      list_size += 1
-      current_node = current_node.next_node
-    end
-    list_size + 1
+    counter = 0
+    each { counter += 1 }
+    head.nil? ? 0 : counter + 1
   end
 
   def head
@@ -64,6 +60,14 @@ class LinkedList
   def add_first_node(new_node)
     @head_node = new_node
     @tail_node = new_node
+  end
+
+  def each
+    current_node = head_node
+    until current_node == tail_node
+      yield
+      current_node = current_node.next_node
+    end
   end
 
   def traverse
@@ -88,8 +92,10 @@ end
 
 
 test_list = LinkedList.new
+puts test_list.size
 # binding.pry
 test_list.append(5)
+puts test_list.size
 # puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 test_list.append(7)
 # puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
