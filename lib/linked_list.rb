@@ -81,23 +81,20 @@ class LinkedList
 
   def to_s
     current_node = head_node
-    until current_node == tail_node
-      print "#{current_node.value} -> "
-      current_node = current_node.next_node
-    end
-    print "#{tail_node.value} -> "
-    puts "nil"
+    each { print "#{current_node.value} -> " }
+    puts "#{tail_node.value} -> nil"
   end
 end
 
 
 test_list = LinkedList.new
-puts test_list.size
-# binding.pry
+puts "List size: #{test_list.size}"
 test_list.append(5)
-puts test_list.size
+puts "List size: #{test_list.size}"
+# binding.pry
 # puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 test_list.append(7)
+puts "List size: #{test_list.size}"
 # puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 test_list.append(9)
 # puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
@@ -114,6 +111,7 @@ test_list.prepend(99)
 test_list.prepend(98)
 # puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 # test_list.traverse
+test_list.prepend(97)
 test_list.to_s
 puts "List size: #{test_list.size}"
 puts "Head: #{test_list.head}"
