@@ -65,7 +65,7 @@ class LinkedList
   def each
     current_node = head_node
     until current_node == tail_node
-      yield
+      yield current_node
       current_node = current_node.next_node
     end
   end
@@ -80,9 +80,9 @@ class LinkedList
   end
 
   def to_s
-    current_node = head_node
-    each { print "#{current_node.value} -> " }
-    puts "#{tail_node.value} -> nil"
+    string_list = ""
+    each { |element| string_list += "#{element.value} -> " }
+    string_list + "#{tail_node.value} -> nil"
   end
 end
 
@@ -104,7 +104,7 @@ test_list.append(11)
 # puts ""
 # test_list.traverse
 # p test_list.tail_node
-test_list.to_s
+puts test_list.to_s
 puts "List size: #{test_list.size}"
 test_list.prepend(99)
 # puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
@@ -112,7 +112,7 @@ test_list.prepend(98)
 # puts "#{test_list.head_node} --> #{test_list.head.value} #{test_list.tail_node} --> #{test_list.tail.value}\n\n"
 # test_list.traverse
 test_list.prepend(97)
-test_list.to_s
+puts test_list.to_s
 puts "List size: #{test_list.size}"
 puts "Head: #{test_list.head}"
 puts "Tail: #{test_list.tail}"
