@@ -53,6 +53,20 @@ class LinkedList
     tail_node.value
   end
 
+  def at(index)
+    return tail if index + 1 == size
+
+    counter = 0
+    node_value = nil
+    each_node do |element|
+      node_value = element.value
+      return node_value if counter == index
+
+      counter += 1
+    end
+    node_value
+  end
+
   def first_node?
     head_node.value.nil?
   end
@@ -99,6 +113,7 @@ puts "Append 4 elements. Expected list size: 4; actual list size: #{test_list.si
 puts "Appended 4 elements."
 puts "    expect: 5 -> 7 -> 9 -> 11 -> nil"
 puts "    actual: #{test_list.to_s}"
+puts ""
 test_list.prepend(99)
 test_list.prepend(98)
 test_list.prepend(97)
@@ -108,3 +123,18 @@ puts "    expect: 97 -> 98 -> 99 -> 5 -> 7 -> 9 -> 11 -> nil"
 puts "    actual: #{test_list.to_s}"
 puts "Test #head method. expect 97; actual: #{test_list.head}"
 puts "Test #tail method. expect: 11; actual: #{test_list.tail}"
+puts ""
+puts "The #at(index) works for index = 0. expect: 97; actual #{test_list.at(0)}"
+puts "The #at(index) works for tail. expect: 11; actual #{test_list.at(6)}"
+random_index = (1..(test_list.size - 1)).to_a.sample
+index_hash = {
+  0 => 97,
+  1 => 98,
+  2 => 99,
+  3 => 5,
+  4 => 7,
+  5 => 9,
+  6 => 11
+}
+puts "#at(index) works for random index (#{random_index}). expect #{index_hash[random_index]}; "\
+"actual: #{test_list.at(random_index)}"
