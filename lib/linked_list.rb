@@ -42,7 +42,7 @@ class LinkedList
   def size
     counter = 0
     each_node { counter += 1 }
-    head.nil? ? 0 : counter + 1
+    head_node.value.nil? ? 0 : counter + 1
   end
 
   def head
