@@ -42,7 +42,7 @@ class LinkedList
   def size
     counter = 0
     each_node { counter += 1 }
-    head_node.value.nil? ? 0 : counter + 1
+    head_node.value.nil? ? 0 : counter
   end
 
   def head
@@ -82,6 +82,7 @@ class LinkedList
       yield current_node
       current_node = current_node.next_node
     end
+    yield tail_node
   end
 
   def traverse
@@ -96,7 +97,7 @@ class LinkedList
   def to_s
     string_list = ""
     each_node { |element| string_list += "#{element.value} -> " }
-    string_list + "#{tail_node.value} -> nil"
+    "#{string_list}nil"
   end
 end
 
@@ -126,6 +127,7 @@ puts "Test #tail method. expect: 11; actual: #{test_list.tail}"
 puts ""
 puts "The #at(index) works for index = 0. expect: 97; actual #{test_list.at(0)}"
 puts "The #at(index) works for tail. expect: 11; actual #{test_list.at(6)}"
+
 random_index = (1..(test_list.size - 1)).to_a.sample
 index_hash = {
   0 => 97,
