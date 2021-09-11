@@ -67,6 +67,13 @@ class LinkedList
     node_value
   end
 
+  def pop
+    current_node = head_node
+    current_node = current_node.next_node until current_node.next_node == tail_node
+    @tail_node = current_node
+    @tail_node.next_node = nil
+  end
+
   def first_node?
     head_node.value.nil?
   end
@@ -140,3 +147,8 @@ index_hash = {
 }
 puts "#at(index) works for random index (#{random_index}). expect #{index_hash[random_index]}; "\
 "actual: #{test_list.at(random_index)}"
+puts ""
+test_list.pop
+puts "#pop removes the last element in the list."
+puts "    expect: 97 -> 98 -> 99 -> 5 -> 7 -> 9 -> nil"
+puts "    actual: #{test_list.to_s}"
