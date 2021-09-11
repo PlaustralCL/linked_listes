@@ -54,5 +54,5 @@ puts ""
 puts "#find works for first element. expect 0; actual #{test_list.find(97)}"
 puts "#find works for last element. expect 5; actual #{test_list.find(9)}"
 random_index = (1..(test_list.size - 1)).to_a.sample
-puts "#find works for random element. expect #{random_index}; actual #{test_list.find(index_hash[random_index])}"
+puts "#find works for random element (#{index_hash[random_index]}). expect #{random_index}; actual #{test_list.find(index_hash[random_index])}"
 puts "#find return nil if not present. expect nil; actual: #{test_list.find(999)}"
