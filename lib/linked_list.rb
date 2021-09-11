@@ -79,6 +79,16 @@ class LinkedList
     false
   end
 
+  def find(data)
+    counter = 0
+    each_node do |element|
+      return counter if element.value == data
+
+      counter += 1
+    end
+    "nil"
+  end
+
   def first_node?
     head_node.value.nil?
   end
