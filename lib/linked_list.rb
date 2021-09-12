@@ -95,12 +95,7 @@ class LinkedList
     return append(data) if index >= size
 
     new_node = Node.new(value: data)
-    counter = 0
-    current_node = head_node
-    until counter == index - 1
-      current_node = current_node.next_node
-      counter += 1
-    end
+    current_node = find_node_with_index(index)
     new_node.next_node = current_node.next_node
     current_node.next_node = new_node
   end
@@ -109,13 +104,18 @@ class LinkedList
     return @head_node = head_node.next_node if index.zero?
     return pop if index == size - 1
 
+    current_node = find_node_with_index(index)
+    current_node.next_node = current_node.next_node.next_node
+  end
+
+  def find_node_with_index(index)
     counter = 0
     current_node = head_node
     until counter == index - 1
       current_node = current_node.next_node
       counter += 1
     end
-    current_node.next_node = current_node.next_node.next_node
+    current_node
   end
 
   def first_node?
