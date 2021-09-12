@@ -69,4 +69,17 @@ test_list.insert_at(52, 8)
 puts "#insert_at works at the end of the list"
 puts "    expect: 51 -> 97 -> 98 -> 50 -> 99 -> 5 -> 7 -> 9 -> 52 -> nil"
 puts "    actual: #{test_list.to_s}"
+puts ""
+test_list.remove_at(0)
+puts "#remve_at works at the head."
+puts "    expect: 97 -> 98 -> 50 -> 99 -> 5 -> 7 -> 9 -> 52 -> nil"
+puts "    actual: #{test_list.to_s}"
+test_list.remove_at(7)
+puts "remove_at works at the end of the list"
+puts "    expect: 97 -> 98 -> 50 -> 99 -> 5 -> 7 -> 9 -> nil"
+puts "    actual: #{test_list.to_s}"
+test_list.remove_at(3)
+puts "remove_at works in the middle of the list"
+puts "    expect: 97 -> 98 -> 50 -> 5 -> 7 -> 9 -> nil"
+puts "    actual: #{test_list.to_s}"
 
