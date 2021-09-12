@@ -56,3 +56,17 @@ puts "#find works for last element. expect 5; actual #{test_list.find(9)}"
 random_index = (1..(test_list.size - 1)).to_a.sample
 puts "#find works for random element (#{index_hash[random_index]}). expect #{random_index}; actual #{test_list.find(index_hash[random_index])}"
 puts "#find return nil if not present. expect nil; actual: #{test_list.find(999)}"
+puts ""
+test_list.insert_at(50, 2)
+puts "#insert_at works in the middle."
+puts "    expect: 97 -> 98 -> 50 -> 99 -> 5 -> 7 -> 9 -> nil"
+puts "    actual: #{test_list.to_s}"
+test_list.insert_at(51, 0)
+puts "#insert_at works at the head."
+puts "    expect: 51 -> 97 -> 98 -> 50 -> 99 -> 5 -> 7 -> 9 -> nil"
+puts "    actual: #{test_list.to_s}"
+test_list.insert_at(52, 8)
+puts "#insert_at works at the end of the list"
+puts "    expect: 51 -> 97 -> 98 -> 50 -> 99 -> 5 -> 7 -> 9 -> 52 -> nil"
+puts "    actual: #{test_list.to_s}"
+

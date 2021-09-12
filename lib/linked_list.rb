@@ -3,6 +3,7 @@
 require "pry-byebug"
 require_relative "./node"
 
+# rubocop: disable Metrics/ClassLength
 # Create a linked list
 class LinkedList
   attr_reader :head_node, :tail_node
@@ -87,6 +88,21 @@ class LinkedList
       counter += 1
     end
     "nil"
+  end
+
+  def insert_at(data, index)
+    return prepend(data) if index.zero?
+    return append(data) if index >= size
+
+    new_node = Node.new(value: data)
+    counter = 0
+    current_node = head_node
+    until counter == index - 1
+      current_node = current_node.next_node
+      counter += 1
+    end
+    new_node.next_node = current_node.next_node
+    current_node.next_node = new_node
   end
 
   def first_node?
