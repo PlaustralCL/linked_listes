@@ -136,15 +136,6 @@ class LinkedList
     yield tail_node
   end
 
-  def traverse
-    current_node = head_node
-    until current_node == tail_node
-      p current_node
-      current_node = current_node.next_node
-    end
-    p tail_node
-  end
-
   def to_s
     string_list = ""
     each_node { |element| string_list += "#{element.value} -> " }
